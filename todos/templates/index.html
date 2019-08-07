@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-
 {% block body %}
 <table class="table mt-3">
   <thead>
@@ -20,6 +19,14 @@
         <td>
           <a href="/todos/{{todo.id}}/" class="btn btn-primary">글보기</a>
         </td>
+      </tr>
+    <!-- for문을 돌리다가 비어있으면 실행 -->
+    {% empty %}
+      <tr>
+        <td>#</td>
+        <td>할일이 비었습니다.</td>
+        <td>-</td>
+        <td>-</td>
       </tr>
     {% endfor %}
   </tbody>
