@@ -18,4 +18,14 @@ def create(request):
     # 데이터를 넣고 저장을 하지 않았기에 save()를 해줘야 데이터베이스에 반영된다.
     todo.save()
 
+    # todo = Todo(title=title, content=content, due_date=due_date)
+    # todo.save()
+
     return render(request, 'create.html')
+
+def index(request):
+    todos = Todo.objects.all()
+    context = {
+        'todos': todos,
+    }
+    return render(request, 'index.html', context)
