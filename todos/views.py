@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Todo
 
 # Create your views here.
@@ -25,11 +25,16 @@ def create(request):
     # todo = Todo(title=title, content=content, due_date=due_date)
     # todo.save()
 
-    return render(request, 'create.html')
+    # return render(request, 'create.html')
+    # render를 쓰는것도 가능하지만 코드의 흐름이 달라진다.
+    return redirect('/todos/')
 
 def index(request):
     # models.py에 저장되어있는 class Todo의 인스턴스 todo에서 모든 정보를 가져온다.
-    todos = Todo.objects.all()
+    # 빠른 날짜 순서대로 정렬
+    todos = Todo.objects.order_by('due_date').all()
+    # 빠른 날짜 반대 순서로 정렬
+    # todos = Todo.objects.order_by('due_date').all()
     context = {
         'todos': todos,
     }
@@ -46,7 +51,8 @@ def detail(request, todo_id):
 def delete(request, todo_id):
     todo = Todo.objects.get(id=todo_id)
     todo.delete()
-    return render(request, 'delete.html')
+    # return render(request, 'delete.html')
+    return redirect('/todos/')
 
 def edit(request, todo_id):
     todo = Todo.objects.get(id=todo_id)
@@ -67,4 +73,7 @@ def update(request, todo_id):
     # models.Model에 .save()등 많은 함수들이 저장되어 있다.
     todo.save()
 
-    return render(request, 'update.html')
+    # return render(request, 'update.html')
+    return redirect(f'/todos/{todo_id}/')
+    # 아래처럼 todo.id도 가능
+    # return redirect(f'/todos/{todo.id}/detail')
