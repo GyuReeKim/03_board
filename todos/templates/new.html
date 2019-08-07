@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block body %}
+<form action="/todos/create/" class="mt-5">
+  <div class="form-group">
+    <label for="title">ToDo</label>
+    <input type="text" class="form-control" id="title" name="title">
+  </div>
+  <div class="form-group">
+    <label for="content">Content</label>
+    <input type="text" class="form-control" id="content" name="content">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{% endblock %}
