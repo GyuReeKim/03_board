@@ -29,3 +29,10 @@ def index(request):
         'todos': todos,
     }
     return render(request, 'index.html', context)
+
+def detail(request, todo_id):
+    todo = Todo.objects.get(id=todo_id)
+    context = {
+        'todo': todo,
+    }
+    return render(request, 'detail.html', context)

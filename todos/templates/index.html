@@ -13,10 +13,13 @@
   <tbody>
     {% for todo in todos %}
       <tr>
+        <!-- id는 자동생성 -->
         <th scope="row">{{todo.id}}</th>
         <td>{{todo.title}}</td>
         <td>{{todo.due_date}}</td>
-        <td>@mdo</td>
+        <td>
+          <a href="/todos/{{todo.id}}/" class="btn btn-primary">글보기</a>
+        </td>
       </tr>
     {% endfor %}
   </tbody>
